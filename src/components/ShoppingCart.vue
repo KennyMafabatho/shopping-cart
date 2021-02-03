@@ -12,7 +12,7 @@
 <script>
 export default {
     computed:{
-        product (){
+        products (){
             return this.$store.getters.cartProducts
         }
      }
