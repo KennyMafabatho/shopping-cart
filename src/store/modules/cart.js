@@ -1,18 +1,19 @@
-
+import shop from "@/api/shop";
 
 export default{
     state:{
-        cart : [],
+
+        items : [],
         checkoutStatus: null
     },
 
     getters:{
 
-        cartProducts(state){
+        cartProducts(state, getters, rootState){
 
-            return state.cart.map(cartItem =>{
+            return state.items.map(cartItem =>{
 
-                const product = state.products.find(product => product.id === cartItem.id)
+                const product = rootState.products.items.find(product => product.id === cartItem.id)
                 return {
                     title: product.title,
                     price: product.price,
@@ -34,7 +35,7 @@ export default{
     mutations:{
 
         pushProductToCart(state, productId){
-            state.cart.push({
+            state.items.push({
                 id: productId,
                 quantity: 1
             })
@@ -49,16 +50,16 @@ export default{
         },
 
         emptyCart(state){
-            state.cart = []
+            state.items = []
         }
 
     },
     actions:{
         
-        addProductToCart({state, getters, commit}, product){
+        addProductToCart({state, getters, commit, rootState}, product){
             if (getters.productIsInStock(product)){
 
-            const cartItem = state.cart.find(item => item.id === product.id)
+            const cartItem = state.items.find(item => item.id === product.id)
             if(!cartItem){
                 //pushProductToCart
                 commit('pushProductToCart', product.id)
@@ -74,7 +75,7 @@ export default{
         },
         checkout ({state, commit}){
             shop.buyProducts(
-                state.cart,
+                state.items,
                 () => {
                     commit('emptyCart')
                     commit('setCheckoutStatus', 'success')

@@ -22,7 +22,7 @@
 import {mapState, mapGetters, mapActions} from 'vuex'
 
 export default {
-    
+
     data(){
         return{
             loading: false
@@ -31,7 +31,7 @@ export default {
     computed:{
 
         ...mapState({
-            products: state => state.products
+            products: state => state.products.items
     }),
 
         ...mapGetters({

@@ -1,47 +1,31 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import { data } from 'autoprefixer'
+import actions from './actions'
+import cart from './modules/cart'
+import products from './modules/products'
 
 Vue.use(Vuex)
-import actions from './actions'
+
 
 export default new Vuex.Store({
-    state:{ //= data
-        products:[],
+
+    modules:{
+        cart,
+        products
+    },
+    state:{
         //{id, quantity}
     
     },
 
-    getters:{//= computed properties 
-      
-        availableProducts(state, getters){
-
-            return state.products.filter(product => product.inventory > 0) 
-        },
-        
-        productIsInStock (){
-            return (product) => {
-                return product.inventory > 0
-            }
-        }
+    getters:{
+    
     },
-    
-    
     actions,
 
     mutations:{
-        setProducts (state, products) {
-            // update products
-            state.products = products
-        },
 
-      
-        
-        decrementProductInventory(state, product){
-            product.inventory--
-        }
-
-       
     }
 
 })
