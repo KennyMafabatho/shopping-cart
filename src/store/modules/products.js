@@ -12,6 +12,17 @@ export default {
 
     getters:{
         //= computed properties 
+        cartProducts(state, getters, rootState, rootGetters){
+
+            return state.items.map(cartItem =>{
+
+                const product = rootState.products.items.find(product => product.id === cartItem.id)
+                return {
+    
+                    quantity: cartItem.quantity
+                }
+            })
+        },
       
         availableProducts(state, getters){
 
@@ -22,6 +33,14 @@ export default {
             return (product) => {
                 return product.inventory > 0
             }
+        },
+
+        productsTotal(state,getters){
+            let total = 0
+            getters.cartProducts.forEach (product => {
+                total += product.quantity
+            })
+            return total
         }
 
     },
@@ -36,7 +55,11 @@ export default {
         
         decrementProductInventory(state, product){
             product.inventory--
-        }
+        },
+
+        // incrementProductInventory (state, product){
+        //     product.inventory++
+        // },
 
        
     },
@@ -45,8 +68,7 @@ export default {
 
         fetchProducts( { commit }){
             //make the call
-            // run setProducts mutation
-            
+            // run setProducts mutation 
             return new Promise((resolve, reject) => {
 
                 shop.getProducts(products => {

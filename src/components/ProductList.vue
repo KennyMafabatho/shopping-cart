@@ -1,9 +1,7 @@
 <template>
     <div>
         <h1>Product List</h1>
-        <img 
-            v-if="loading"
-            src="https://imgur.com/JfPpwOA.gif"/>
+        <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
         <ul v-else>
             <li v-for="product in products"> 
                 
@@ -15,6 +13,8 @@
                 @click="addProductToCart(product)">Add To Cart</button>
             </li>
         </ul>
+        <br>
+          <p> Total Items : </p>
     </div>
 </template>
 
