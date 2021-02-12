@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <ProductList/>
-    <hr>
-    <ShoppingCart/>
+    <router-view></router-view>
   </div>
 </template>
 
