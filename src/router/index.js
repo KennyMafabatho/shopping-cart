@@ -11,7 +11,7 @@ const router = new Router({
 
     routes: [
         {
-            path: '/products',
+            path: '/',
             name: 'products',
             component: ProductList
         },

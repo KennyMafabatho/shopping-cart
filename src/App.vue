@@ -1,18 +1,22 @@
 <template>
   <div id="app">
+    <Navigation/>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Navigation from './components/Navigation.vue'
 import ProductList from './components/ProductList'
 import ShoppingCart from './components/ShoppingCart'
+
 
 export default {
   name: 'App',
   components: {
     ProductList,
-    ShoppingCart
+    ShoppingCart,
+    Navigation
   }
 }
 </script>
