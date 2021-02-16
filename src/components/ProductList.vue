@@ -5,9 +5,11 @@
         <ul v-else>
             <li v-for="product in products "> 
                 
-               <router-link :to="{ name: 'productname', params: { id: product.id}}"> {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </router-link>
+               <router-link :to="{ 
+                   name: 'productname', 
+                   params: { id: product.id}}"> {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </router-link>
                 
-                <div v-if="product.inventory <= 5 ">
+                <div v-if="product.inventory < 5 ">
                     <p>last items in stock</p>
                 </div>
             

@@ -23,16 +23,24 @@ const router = new Router({
         {
             path:'/productpage/:id',
             name: 'productname',
-            props: true,
+            props: castRouteParams,
             component: ProductPage
             
         },
+        
         {
             path: '/cart',
             name: 'cart',
             component: ShoppingCart
         }
     ],
+    
 });
+
+function castRouteParams(route) {
+    return {
+      id: Number(route.params.id),
+    };
+  }
 
 export default router

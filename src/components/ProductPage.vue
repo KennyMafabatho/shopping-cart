@@ -1,12 +1,11 @@
 <template>
     <div>
-       <p> {{ product.id }} - {{product.name}} </p>
+      <p> {{ product.id }}  {{ product.title }} </p>
     </div>
 </template>
 
 <script>
-import shop from "@/api/shop";
-
+import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
     data(){
         return{};
@@ -18,10 +17,22 @@ export default {
             required: true
         }
     },
+     
+        ...mapState({
+            products: state => state.products.items
+    }),
+      ...mapGetters('products', {
+            productIsInStock: 'productIsInStock'
+        }),
+
     computed:{
-        product(){
-            return shop.products.find ( product => product.id === this.id);
-        }
+
+         product(){
+            return products.find(product => product.id === this.id )
+        },
+
     }
-}
+
+  }
+
 </script>
