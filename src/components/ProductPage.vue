@@ -1,11 +1,13 @@
 <template>
     <div>
-      <p> {{ product.id }}  {{ product.title }} </p>
+      <p> {{ product.id }} - {{ product.title }} </p>
     </div>
 </template>
 
 <script>
-import {mapState, mapGetters, mapActions} from 'vuex'
+
+import {products} from '../store/modules/products'
+import { mapGetters } from "vuex";
 export default {
     data(){
         return{};
@@ -17,22 +19,16 @@ export default {
             required: true
         }
     },
-     
-        ...mapState({
-            products: state => state.products.items
-    }),
-      ...mapGetters('products', {
-            productIsInStock: 'productIsInStock'
-        }),
-
-    computed:{
-
-         product(){
-            return products.find(product => product.id === this.id )
-        },
-
+     computed:{
+           ...mapGetters('products', { getProduct: 'getProductById' }),
+        
+         product: function () {
+             return this.getProduct(this.$route.params.id);
+             
+       }
+       
+    },
+       
     }
-
-  }
 
 </script>

@@ -8,6 +8,7 @@ export default {
         
          //= data
          items:[],
+         
     },
 
     getters:{
@@ -24,6 +25,12 @@ export default {
             }
         },
 
+        getProductById: (state) => (id) => {
+            
+            return state.items.find( product => product.id === id )
+        },
+        all: (state) => { return state.items}
+        
     },
 
     mutations:{
@@ -55,7 +62,7 @@ export default {
                 })
             })
             
-        }
+        },
 
     }
 

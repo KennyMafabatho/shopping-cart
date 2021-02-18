@@ -6,12 +6,13 @@ import store from '@/store/index'
 import router from '@/router/index'
 
 import {currency} from "@/currency";
+import {products} from './store/modules/products';
 Vue.config.productionTip = false
 Vue.filter('currency', currency)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  store,
+  render: h => h(App),
   router,
-  render: h => h(App)
+  store
 })
