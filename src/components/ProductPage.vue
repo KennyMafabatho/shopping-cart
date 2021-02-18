@@ -1,16 +1,13 @@
 <template>
     <div>
-      <p> {{ product.id }} - {{ product.title }} </p>
+      <p v-if="product"> {{ product.id }} - {{ product.title }} </p>
     </div>
 </template>
 
 <script>
-
-import {products} from '../store/modules/products'
-import { mapGetters } from "vuex";
 export default {
-    data(){
-        return{};
+    data () {
+        return {};
     },
     props:
     {
@@ -19,16 +16,12 @@ export default {
             required: true
         }
     },
-     computed:{
-           ...mapGetters('products', { getProduct: 'getProductById' }),
-        
-         product: function () {
-             return this.getProduct(this.$route.params.id);
-             
-       }
-       
+    computed:{
+        product: function () {
+             return this.$store.getters['products/getProductById'](this.id);
+        }
     },
        
-    }
+}
 
 </script>

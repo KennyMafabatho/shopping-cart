@@ -26,6 +26,7 @@ export default {
         },
 
         getProductById: (state) => (id) => {
+            if (!id || !state.items.length) return null
             
             return state.items.find( product => product.id === id )
         },
