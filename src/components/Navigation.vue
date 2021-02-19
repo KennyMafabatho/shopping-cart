@@ -1,12 +1,12 @@
 <template>
     <nav id="nav">
         <ul class="nav-links">
-            <li class="links">
+            <router-link to="/" class="links">
                 Products
-            </li>
-            <li class="links">
+            </router-link>
+            <router-link to="/cart" class="links">
                 Cart
-            </li>
+            </router-link >
             <router-link to="/cart">
              Total Items: {{ total }}
             </router-link>

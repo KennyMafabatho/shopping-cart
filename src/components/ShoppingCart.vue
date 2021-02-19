@@ -4,12 +4,16 @@
         <ul>
             <li v-for="product in products">
                 {{ product.title }} - {{ product.price | currency }} - {{ product.quantity }}
+                    
+               
             </li>
         </ul>
         <p> Total : {{ total | currency }} </p>
+                <button 
 
-        <button @click="checkout">Checkout </button>
-        <p v-if="checkoutStatus">{{checkoutStatus}}</p>
+                @click="checkout"> Checkout </button>
+                
+                <p v-if="checkoutStatus">{{checkoutStatus}}</p>
     </div> 
 </template>
 
@@ -22,7 +26,8 @@ export default {
 
         ...mapGetters('cart',{
             products: 'cartProducts',
-            total:'cartTotal'
+            total:'cartTotal',
+            cartProducts:'cartProducts'
         }),
         ...mapState('cart',{
             checkoutStatus: state => state.checkoutStatus
@@ -30,7 +35,7 @@ export default {
      },
 
      methods: {
-         ...mapActions('cart', ['checkout'])
+         ...mapActions('cart', ['checkout']),
      }
 }
 </script>
