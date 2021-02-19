@@ -41,20 +41,6 @@ export default {
 </script>
 
 <style scoped>
- #nav{ 
-    display:flex ;
-    align-items: center;
-    top: 0;
-    background: white;
-    z-index: 1;
-
- }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
-}
 
 .nav-links{
  display: flex;
