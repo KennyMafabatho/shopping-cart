@@ -1,17 +1,21 @@
 <template>
-    <nav id="nav">
-        <ul class="nav-links">
-            <router-link to="/" class="links">
-                Products
-            </router-link>
-            <router-link to="/cart" class="links">
-                Cart
-            </router-link >
-            <router-link to="/cart">
-             Total Items: {{ total }}
-            </router-link>
-        </ul>
-    </nav>
+    <div>
+        <b-navbar type="light" variant="dark" >
+            <b-navbar-brand>  
+                <router-link to="/"> Products</router-link>
+             
+                <router-link class="ml-1" to="/cart"> Cart </router-link>
+             
+                 <router-link class="justify content-center" to="/cart"> Total Items: {{ total }}</router-link>
+                  
+            
+            </b-navbar-brand>
+            <b-navbar-brand class="ml-auto">
+             <router-link to="/admin">Admin</router-link>
+            </b-navbar-brand>
+            
+        </b-navbar>
+    </div>
 </template>
 
 <script>

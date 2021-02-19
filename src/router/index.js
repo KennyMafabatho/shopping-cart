@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import ProductList from '../components/ProductList'
 import ShoppingCart from '../components/ShoppingCart'
 import ProductPage from '../components/ProductPage'
- 
+import Admin from '../components/Admin'
 
 Vue.use(Router)
 
@@ -32,6 +32,11 @@ const router = new Router({
             path: '/cart',
             name: 'cart',
             component: ShoppingCart
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: Admin
         }
     ],
     
