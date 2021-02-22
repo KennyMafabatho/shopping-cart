@@ -2,7 +2,7 @@
 
     <div>
         <section>
-        <form class="pb-4">
+        <form class="pb-8">
             <h4> Add new Product </h4>
            <p> <label>Title</label>
             <input v-model="title" type="text"/>
@@ -22,8 +22,8 @@
 
 
         </section>
-        <h4 class="pt-4 pb-2">Inventory Management</h4>
-        <ul class="justify-content-centre">
+        <h4 class="pt-8 pb-2">Inventory Management</h4>
+        <ul class="align-items-centre">
         <li v-for="product in products "> 
                 
                <router-link :to="{ 

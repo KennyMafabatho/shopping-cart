@@ -9,7 +9,7 @@
             </li>
         </ul>
         <p> Total : {{ total | currency }} </p>
-                <button 
+                <button :disabled="isEmpty"
 
                 @click="checkout"> Checkout </button>
                 
@@ -23,6 +23,10 @@ import {mapState, mapGetters, mapActions} from 'vuex'
 export default {
 
     computed:{
+
+        isEmpty:(
+            ({products}) => products.length === 0
+        ),
 
         ...mapGetters('cart',{
             products: 'cartProducts',
