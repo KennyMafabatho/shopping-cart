@@ -16,6 +16,7 @@
                 <button :disabled ="!productIsInStock (product)"
 
                 @click="addProductToCart(product)">Add To Cart</button>
+                
             </li>
             
             
@@ -36,6 +37,7 @@ export default {
         }
     },
     computed:{
+        
 
         ...mapState({
             products: state => state.products.items
@@ -51,7 +53,8 @@ export default {
 
         ...mapActions({
             fetchProducts :'products/fetchProducts',
-            addProductToCart :'cart/addProductToCart'
+            addProductToCart :'cart/addProductToCart',
+            
         })
        
     },

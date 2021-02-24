@@ -85,6 +85,21 @@ export default{
             }
           
         },
+
+        incrementInventory({state, getters, commit, rootState, rootGetters}, product){
+            if (rootGetters['products/productIsInStock'](product)){
+            state.items.find(item => item.id === product.id)
+            commit('products/incrementProductInventory', product,{root:true})
+            }
+        },
+    
+        decrementInventory({state, getters, commit, rootState, rootGetters}, product){
+            if (rootGetters['products/productIsInStock'](product)){
+            state.items.find(item => item.id === product.id)
+            commit('products/decrementProductInventory', product,{root:true})
+            }
+        },
+      
         checkout ({state, commit}){
             shop.buyProducts(
                 state.items,

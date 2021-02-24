@@ -9,14 +9,15 @@
 import Navigation from './components/Navigation.vue'
 import ProductList from './components/ProductList'
 import ShoppingCart from './components/ShoppingCart'
-
+import Admin from './components/Admin'
 
 export default {
   name: 'App',
   components: {
     ProductList,
     ShoppingCart,
-    Navigation
+    Navigation,
+    Admin
   }
 }
 </script>
