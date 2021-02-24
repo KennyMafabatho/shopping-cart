@@ -44,8 +44,13 @@ export default {
         decrementProductInventory(state, product){
             product.inventory--
         },
+        incrementProductInventory(state, product){
+            product.inventory++
+        },
 
-    
+        addNewProduct(state, product){
+            state.items.push(product)
+        }
        
     },
 
@@ -64,6 +69,10 @@ export default {
             })
             
         },
+        addProductToList(context, product){
+            context.commit('addNewProduct', product)
+        },
+
 
     }
 
