@@ -13,7 +13,7 @@
             <label for= "inventory">Inventory</label>
                 <input type="number" v-model="product.inventory" required>
                 <br>
-            <button type="button" @click="addProduct" class ="btn btn-success">Add product</button>
+            <button type="button" @click="addProduct(product)" class ="btn btn-success">Add product</button>
             
             </div>
         </section>
@@ -22,7 +22,7 @@
         <ul class="align-items-centre">
         <li v-for="product in products "> 
             
-                {{ product.title }} - {{ product.price | currency }} - <span> <pre> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre> </span>
+        {{ product.title }} - {{ product.price | currency }} - <span> <pre> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre> </span>
             
                     
          </li>  
@@ -43,13 +43,13 @@ export default {
    
     data(){
         return{
-          formErrors: {},
         
-        product:[{
+        product:{
+            
             title:'',
             price:'',
             inventory:''
-        }]
+        }
     }},
       
     computed:{
@@ -65,46 +65,15 @@ export default {
        
     },
 
-   
     methods:{
 
         ...mapActions({
             fetchProducts :'products/fetchProducts',
-            incrementInventory: 'cart/incrementInventory',
-            decrementInventory: 'cart/decrementInventory'
+            incrementInventory:'products/incrementInventory',
+            decrementInventory:'products/decrementInventory',
+            addProduct:'products/addProductToList'
         }),
-
-        validateForm(){
-            const errors = {}
-            if (!this.product.title){
-                errors.name = 'Title is reqiured'
-            }
-            if (!this.product.price){
-                errors.price = 'Price is required'
-            }
-            if (!this.product.inventory){
-                errors.inventory = 'Inventory is required'
-            }
-
-            this.formErrors = errors
-            return Object.keys(errors).length === 0
-        },
-        addProduct(){
-            if(this.validateForm ()){
-
-            if(!this.product){
-                return;
-            }
-            this.$store.push({title:'',price:'', inventory:''});
-
-            this.product='';
-            }
-        },
-
-        
-       
     },
-
     created(){
         this.loading = true
         this.fetchProducts()

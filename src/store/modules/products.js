@@ -48,11 +48,11 @@ export default {
             product.inventory++
         },
 
-        addNewProduct(state, product){
+        addNewProduct(state,product){
             state.items.push(product)
-        }
        
-    },
+            }
+        },
 
     actions:{
 
@@ -69,11 +69,30 @@ export default {
             })
             
         },
-        addProductToList(context, product){
-            context.commit('addNewProduct', product)
+        incrementInventory({state, getters, commit, rootState, rootGetters}, product){
+            if (rootGetters['products/productIsInStock'](product)){
+            state.items.find(item => item.id === product.id)
+            commit('products/incrementProductInventory', product,{root:true})
+            }
         },
-
-
+    
+        decrementInventory({state, getters, commit, rootState, rootGetters}, product){
+            if (rootGetters['products/productIsInStock'](product)){
+            state.items.find(item => item.id === product.id)
+            commit('products/decrementProductInventory', product,{root:true})
+            }
+        },
+        
+        addProductToList({commit,state}, product){
+         
+            const maxId = Math.max.apply(null, state.items.map(item => item.id)) +1 ;
+            commit('addNewProduct', {id:maxId,
+                title:product.title,
+                price:product.price,
+                inventory:product.inventory});
+            
+        },
+ 
     }
 
     
