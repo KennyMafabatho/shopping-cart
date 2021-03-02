@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Product List</h1>
+        <h1 class="pt-4 pb-2 font-weight-bold">Product List</h1>
         <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
         <ul v-else>
             <li v-for="product in products "> 
@@ -13,9 +13,9 @@
                     <p>last items in stock</p>
                 </div>
             
-                <button :disabled ="!productIsInStock (product)"
+              <pre class="pt-2">  <button type="button" class="btn btn-success" :disabled ="!productIsInStock (product)"
 
-                @click="addProductToCart(product)">Add To Cart</button>
+                @click="addProductToCart(product)">Add To Cart</button> </pre>
                 
             </li>
             

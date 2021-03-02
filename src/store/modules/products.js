@@ -86,7 +86,8 @@ export default {
         addProductToList({commit,state}, product){
          
             const maxId = Math.max.apply(null, state.items.map(item => item.id)) +1 ;
-            commit('addNewProduct', {id:maxId,
+            commit('addNewProduct', 
+                {id:maxId,
                 title:product.title,
                 price:product.price,
                 inventory:product.inventory});
