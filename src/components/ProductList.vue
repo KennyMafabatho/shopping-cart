@@ -6,8 +6,10 @@
             <li v-for="product in products "> 
                 
                <router-link :to="{ 
+                   
                    name: 'productname', 
-                   params: { id: product.id}}"> {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </router-link>
+                   params: { id: product.id}}"> <img :src="require(`@/assets/${product.image}`)" :alt="product.name"/>
+                    {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </router-link>
                 
                 <div v-if="product.inventory < 5 ">
                     <p>last items in stock</p>
@@ -66,3 +68,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    img{
+        max-width: 250px;
+        height: 200px;
+    }
+</style>
