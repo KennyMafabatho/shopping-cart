@@ -1,17 +1,17 @@
 <template>
     <div>
-        <b-navbar type="light" variant="dark" >
+        <b-navbar type="dark" variant="info" >
             <b-navbar-brand>  
-                <router-link to="/"> Products</router-link>
+                <router-link class="text-dark" to="/"> Products</router-link>
              
-                <router-link class="ml-1" to="/cart"> Cart </router-link>
+                <router-link class="ml-1 text-dark" to="/cart"> Cart </router-link>
              
-                 <router-link class="justify content-center" to="/cart"> Total Items: {{ total }}</router-link>
+                 <router-link class="text-align-center text-dark" to="/cart"> Total Items: {{ total }}</router-link>
                   
             
             </b-navbar-brand>
             <b-navbar-brand class="ml-auto">
-             <router-link to="/admin">Admin</router-link>
+             <router-link class="text-dark" to="/admin">Admin</router-link>
             </b-navbar-brand>
             
         </b-navbar>

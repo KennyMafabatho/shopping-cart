@@ -18,11 +18,11 @@
             </div>
         </section>
        <footer class="">
-        <h4 class="pt-4 pb-2 font-weight-bold text-uppercase">Inventory Management</h4>
+        <h4 class="pt-4 pb-4 font-weight-bold text-uppercase">Inventory Management</h4>
         <ul class="align-items-centre">
         <li v-for="product in products "> 
             
-        {{ product.title }} - {{ product.price | currency }} <button type="button" class =" pr-2 btn btn-danger"> Delete </button>  <pre class="pt-2"> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre>
+        {{ product.title }} - {{ product.price | currency }} <span class="pl-2 pb-2"> <button type="button" class ="btn btn-danger"> Delete </button> </span> <pre class="mt-2"> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre>
                        
          </li>  
         </ul>
