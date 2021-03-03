@@ -3,23 +3,23 @@
         <h1 class="pt-4 pb-2 font-weight-bold">Product List</h1>
         <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
         <ul v-else>
-            <li v-for="product in products "> 
+            <li class="pb-4" v-for="product in products "> 
                 
                <router-link :to="{ 
                    
                    name: 'productname', 
                    params: { id: product.id}}"> 
-                     {{ product.title }}
-                   <img class="pb-4" :src="require(`@/assets/${product.image}`)" :alt="product.name"/>
-                  <span>  - {{ product.price | currency }} - {{ product.inventory}} </span>
+                   <img :src="require(`@/assets/${product.image}`)" :alt="product.name"/>
+                  <span> {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </span>
                </router-link>
                 <span>
+                    <button type="button" class="btn btn-success" :disabled ="!productIsInStock (product)"
+                    @click="addProductToCart(product)">Add To Cart</button>
+                    
                     <div v-if="product.inventory < 5 ">
                         <p>last items in stock</p>
                     </div>
-                <button type="button" class="btn btn-success" :disabled ="!productIsInStock (product)"
-
-                    @click="addProductToCart(product)">Add To Cart</button>
+                
                 </span>
             </li>
             

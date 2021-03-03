@@ -51,6 +51,9 @@ export default {
         addNewProduct(state,product){
             state.items.push(product)
        
+            },
+            removeProduct(state, product){
+                state.items.slice(product,1)
             }
         },
 
