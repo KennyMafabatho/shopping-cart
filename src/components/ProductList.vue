@@ -8,17 +8,19 @@
                <router-link :to="{ 
                    
                    name: 'productname', 
-                   params: { id: product.id}}"> <img :src="require(`@/assets/${product.image}`)" :alt="product.name"/>
-                    {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </router-link>
-                
-                <div v-if="product.inventory < 5 ">
-                    <p>last items in stock</p>
-                </div>
-            
-              <pre class="pt-2">  <button type="button" class="btn btn-success" :disabled ="!productIsInStock (product)"
+                   params: { id: product.id}}"> 
+                     {{ product.title }}
+                   <img class="pb-4" :src="require(`@/assets/${product.image}`)" :alt="product.name"/>
+                  <span>  - {{ product.price | currency }} - {{ product.inventory}} </span>
+               </router-link>
+                <span>
+                    <div v-if="product.inventory < 5 ">
+                        <p>last items in stock</p>
+                    </div>
+                <button type="button" class="btn btn-success" :disabled ="!productIsInStock (product)"
 
-                @click="addProductToCart(product)">Add To Cart</button> </pre>
-                
+                    @click="addProductToCart(product)">Add To Cart</button>
+                </span>
             </li>
             
             
@@ -71,7 +73,7 @@ export default {
 
 <style scoped>
     img{
-        max-width: 250px;
+        max-width: 200px;
         height: 200px;
     }
 </style>
