@@ -52,9 +52,11 @@ export default {
             state.items.push(product)
        
             },
-            removeProduct(state, product){
-                state.items.slice(product,1)
-            }
+        removeProduct(state, item,id){
+            const index = state.items.findIndex((prodId) => prodId.id === item.id)
+            if (index > -1) state.items.splice(index, 1)
+           
+        }
         },
 
     actions:{
@@ -96,6 +98,11 @@ export default {
                 inventory:product.inventory});
             
         },
+        removeProductFromList({commit}, item){
+            commit('removeProduct', item)
+
+
+        }
  
     }
 

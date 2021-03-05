@@ -71,11 +71,10 @@ export default {
             fetchProducts :'products/fetchProducts',
             incrementInventory:'products/incrementInventory',
             decrementInventory:'products/decrementInventory',
-            addProduct:'products/addProductToList'
+            addProduct:'products/addProductToList',
+           // removeProduct:'products/removeProduct'
         }),
-        removeProduct(product){
-            this.products.splice(product, 1)
-        }
+      
     },
     created(){
         this.loading = true
