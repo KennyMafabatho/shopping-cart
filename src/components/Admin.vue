@@ -22,14 +22,30 @@
         <ul class="align-items-centre">
        
         <li v-for="product in products "> 
-            
-        {{ product.title }} - {{ product.price | currency }} <span class="pl-2 pb-2"> <button type="button" class ="btn btn-danger" data-toggle="modal" data-target="#ModalID"> Delete </button> </span> 
+       
+        {{ product.title }} - {{ product.price | currency }} <span class="pl-2 pb-2"> 
+           <button type="button" class="btn btn-danger"  @click="showModal = true">Delete</button> </span>
         <pre class="mt-2"> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre>
                        
          </li>  
         </ul>
+         <modal v-if="showModal">
+                  <template v-slot:header>
+                    <h3>Deleting a product</h3>
+                  </template>
 
-         <div class="modal fade" id="modalID" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                  <template v-slot:body> <h4> Are you sure you want to delete {{ product.name }} ? </h4>
+                </template>
+
+                  <template v-slot:footer>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <button class="btn btn--secondary" @click="closeModal()">Cancel</button>
+                      <button class="btn btn-danger" @click="removeProduct(product)">Delete</button>
+                    </div>
+                  </template>
+          </modal>
+
+         <!-- <div class="modal fade" id="modalID" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -47,7 +63,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         
 
         </footer>
@@ -60,20 +76,22 @@
 </template>
 <script>
 import {mapState, mapGetters, mapActions} from 'vuex'
-import products from '../store/modules/products'
-
+import Modal from './Modal'
 export default {
-   
+    components:{
+      Modal
+    },
     data(){
-        return{
         
+        return{   
         product:{
-            
             title:'',
             price:'',
             inventory:''
-        }
+        },
+        showModal: false
     }},
+    
       
     computed:{
 
@@ -97,6 +115,7 @@ export default {
             addProduct:'products/addProductToList',
            removeProduct:'products/removeProductFromList'
         }),
+         
       
     },
     created(){

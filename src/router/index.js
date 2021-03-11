@@ -5,6 +5,7 @@ import ProductList from '../components/ProductList'
 import ShoppingCart from '../components/ShoppingCart'
 import ProductPage from '../components/ProductPage'
 import Admin from '../components/Admin'
+import Modal from '../components/Modal'
 
 Vue.use(Router)
 
