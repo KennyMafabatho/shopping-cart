@@ -21,9 +21,6 @@
   </transition>
 </template>
 <script>
-import {mapState, mapGetters, mapActions} from 'vuex'
-import products from '../store/modules/products'
-
 export default {
   name: "Modal",
   data() {
@@ -33,15 +30,7 @@ export default {
     };
     
   },
-  
-  computed:{
-    ...mapState({
-            products: state => state.products.items}),
-
-            ...mapGetters('products', {
-            productIsInStock: 'productIsInStock'
-        }),
-  },
+ 
   methods: {
     closeModal() {
       this.showModal = false;
@@ -50,16 +39,7 @@ export default {
     openModal() {
       this.showModal = true;
       document.querySelector("body").classList.add("overflow-hidden");
-    },
-    deleteProduduct(){
-      this.showModal = false
-      let index = this.items.indexOf(this.selectedProduct);
-      this.products.splice(index, 1);
-      this.selectedProduct = null;
-    },
-    ...mapActions({
-    removeProduct:'products/removeProductFromList'})
-  }
+    }
 }
 
 </script>

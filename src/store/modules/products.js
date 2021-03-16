@@ -8,7 +8,7 @@ export default {
         
          //= data
          items:[],
-         
+         selected: {}
     },
 
     getters:{
@@ -56,14 +56,16 @@ export default {
             const index = state.items.findIndex((prodId) => prodId.id === item.id)
             if (index > -1) state.items.splice(index, 1)
            
+        },
+        selectedProduct(state, product){
+            state.selected(product)
         }
         },
 
     actions:{
 
         fetchProducts( { commit }){
-            //make the call
-            // run setProducts mutation 
+             
             return new Promise((resolve, reject) => {
 
                 shop.getProducts(products => {
