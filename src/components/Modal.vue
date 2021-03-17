@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="modal-mask" v-if="showModal">
+    <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
@@ -39,9 +39,11 @@ export default {
     openModal() {
       this.showModal = true;
       document.querySelector("body").classList.add("overflow-hidden");
-    }
+    },
+    onCancel() {
+			this.$emit("cancel");}
 }
-
+}
 </script>
 
 <style scoped>

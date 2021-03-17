@@ -24,23 +24,23 @@
         <li v-for="product in products "> 
        
         {{ product.title }} - {{ product.price | currency }} <span class="pl-2 pb-2"> 
-           <button type="button" class="btn btn-danger"  @click="$refs.modalname.openModal()">Delete</button> </span>
+           <button type="button" class="btn btn-danger"  @click="selectedProduct(product)($store.products.selectedProduct)">Delete</button> </span>
         <pre class="mt-2"> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre>
                        
          </li>  
         </ul>
-         <modal ref="modalname" >
+         <modal v-if="$store.products.selectedProduct">
                   <template v-slot:header>
                     <h3 >Deleting a product</h3>
                   </template>
 
-                  <template v-slot:body> <h4 v-if="product"> Are you sure you want to delete {{ product.name }} ? </h4>
+                  <template v-slot:body> <h4> Are you sure you want to delete {{ selectedProduct.title }} ? </h4>
                 </template>
 
                   <template v-slot:footer>
                     <div class="align-items-center justify-content-between  mx-auto ">
-                      <button class="btn btn-secondary" @click="$refs.modalname.closeModal()">Cancel</button>
-                      <button class="btn btn-danger" @click="removeProduct(this.$store.product)">Delete</button>
+                      <button class="btn btn-secondary" @click="onCancel()">Cancel</button>
+                      <button class="btn btn-danger" @click="removeProduct(selectedProduct)">Delete</button>
                     </div>
                   </template>
           </modal>
@@ -64,6 +64,7 @@ export default {
             price:'',
             inventory:''
         },
+        showModal: false
        
     }},
     
@@ -71,7 +72,8 @@ export default {
     computed:{
 
         ...mapState({
-            products: state => state.products.items
+            products: state => state.products.items,
+            selectedProduct : state => state.products.selected
     }),
 
         ...mapGetters('products', {
@@ -90,14 +92,22 @@ export default {
             addProduct:'products/addProductToList',
             removeProduct:'products/removeProductFromList'
         }),
-         
+        
+        
+         confirmDeleteProduct(product){
+           this.$store.commit('products/selectedProduct',product)
+           this.openModal= true
+         }
       
     },
     created(){
         this.loading = true
         this.fetchProducts()
         .then(()=> this.loading = false )
-    }
+    },
+    onCancel() {
+			this.$emit("cancel")
+      }
 }
 </script>
 
@@ -126,5 +136,9 @@ overflow-hidden {
 .justify-content-between {
   justify-content: space-between;
 }
+.actions .cancel {
+     background: darkred;
+     color: white;
+    }
 
 </style>

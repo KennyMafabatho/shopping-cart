@@ -58,7 +58,7 @@ export default {
            
         },
         selectedProduct(state, product){
-            state.selected(product)
+            state.selected = product
         }
         },
 
