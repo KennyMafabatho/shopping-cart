@@ -8,7 +8,8 @@ export default {
         
          //= data
          items:[],
-         selected: {}
+         deleting: null,
+         editing: null
     },
 
     getters:{
@@ -57,8 +58,13 @@ export default {
             if (index > -1) state.items.splice(index, 1)
            
         },
-        selectedProduct(state, product){
-            state.selected = product
+        
+        deleteProduct(state, product){
+            state.deleting = product
+        },
+
+        editProduct(state, product){
+            state.editing = product
         }
         },
 
@@ -104,7 +110,12 @@ export default {
             commit('removeProduct', item)
 
 
-        }
+        },
+        setProductName( {state, commit}, product){
+            let productName = state.editing.findIndex((prodId) => prodId.id === item.id)
+              if (index > -1) state.editing.dispatch(index, 1)
+              commit('editProduct', productName)
+          }
  
     }
 

@@ -14,37 +14,59 @@
                 <input type="number" v-model="product.inventory" required>
                 <br>
             <pre class="pt-2"> <button type="button" @click="addProduct(product)" class ="btn btn-success">Add product</button> </pre>
-            
+
             </div>
         </section>
+
        <footer class="">
         <h4 class="pt-4 pb-4 font-weight-bold text-uppercase">Inventory Management</h4>
         <ul class="align-items-centre">
        
         <li v-for="product in products "> 
+
+        <span class="pl-2 pb-2"> <button type="button" class="btn btn-success"  @click="confirmEditProduct(product)">Edit</button></span>
        
         {{ product.title }} - {{ product.price | currency }} <span class="pl-2 pb-2"> 
-           <button type="button" class="btn btn-danger"  @click="selectedProduct(product)($store.products.selectedProduct)">Delete</button> </span>
+           <button type="button" class="btn btn-danger"  @click="confirmDeleteProduct(product)">Delete</button> </span>
         <pre class="mt-2"> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre>
                        
          </li>  
         </ul>
-         <modal v-if="$store.products.selectedProduct">
+         <modal v-if="this.deleteProduct">
                   <template v-slot:header>
                     <h3 >Deleting a product</h3>
                   </template>
 
-                  <template v-slot:body> <h4> Are you sure you want to delete {{ selectedProduct.title }} ? </h4>
+                  <template v-slot:body> <h4> Are you sure you want to delete {{ deleteProduct.title }} ? </h4>
                 </template>
 
                   <template v-slot:footer>
-                    <div class="align-items-center justify-content-between  mx-auto ">
-                      <button class="btn btn-secondary" @click="onCancel()">Cancel</button>
-                      <button class="btn btn-danger" @click="removeProduct(selectedProduct)">Delete</button>
+                    <div class="align-items-center justify-content-between mx-auto ">
+                      <button class="btn btn-secondary" @click="confirmDeleteProduct(null)">Cancel</button>
+                      <button class="btn btn-danger" @click="removeProduct(deleteProduct)">Delete</button>
                     </div>
                   </template>
           </modal>
 
+
+          <modal v-if="this.editProduct">
+                  <template v-slot:header>
+                    <h3>Editing Product</h3>
+                  </template>
+
+                  <template v-slot:body> <label class="form"> 
+                    <p> Edit {{ editProduct.title }} </p>
+                  <input v-model="productName" placeholder="Edit"> </label>
+                        
+                </template>
+
+                  <template v-slot:footer>
+                    <div class="align-items-center justify-content-between mx-auto ">
+                      <button class="btn btn-secondary" @click="editProduct(null)">Cancel</button>
+                      <button class="btn btn-success" @click="removeProduct(selectedProduct)">Save</button>
+                    </div>
+                  </template>
+          </modal>
         </footer>
     </div>
 
@@ -59,21 +81,24 @@ export default {
     data(){
         
         return{   
+        productName: '',
         product:{
             title:'',
             price:'',
             inventory:''
         },
-        showModal: false
-       
-    }},
+          
+    }
+
+    },
     
       
     computed:{
 
         ...mapState({
             products: state => state.products.items,
-            selectedProduct : state => state.products.selected
+            deleteProduct : state => state.products.deleting,
+            editProduct: state => state.products.editing
     }),
 
         ...mapGetters('products', {
@@ -91,13 +116,20 @@ export default {
             decrementInventory:'products/decrementInventory',
             addProduct:'products/addProductToList',
             removeProduct:'products/removeProductFromList'
-        }),
-        
+        }), 
         
          confirmDeleteProduct(product){
-           this.$store.commit('products/selectedProduct',product)
-           this.openModal= true
-         }
+           this.$store.commit('products/deleteProduct',product)
+          // this.openModal= true
+         },
+         confirmEditProduct( product){
+           this.$store.commit('products/editProduct', product)
+           productName = product.title
+         },
+          onCancel() {
+           $emit('close')
+      }
+         
       
     },
     created(){
@@ -105,9 +137,7 @@ export default {
         this.fetchProducts()
         .then(()=> this.loading = false )
     },
-    onCancel() {
-			this.$emit("cancel")
-      }
+    
 }
 </script>
 
