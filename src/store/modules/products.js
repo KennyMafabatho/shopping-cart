@@ -112,9 +112,11 @@ export default {
 
         },
         setProductName( {state, commit}, product){
-            let productName = state.editing.findIndex((prodId) => prodId.id === item.id)
-              if (index > -1) state.editing.dispatch(index, 1)
-              commit('editProduct', productName)
+            const productName = state.items.findIndex((prodId) => prodId.id === item.id)
+              if (index > -1)  
+              state.editing.splice(index, 1)
+
+              commit('editProduct', {productName: productName})
           }
  
     }

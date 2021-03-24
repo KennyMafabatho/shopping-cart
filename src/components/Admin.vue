@@ -62,8 +62,8 @@
 
                   <template v-slot:footer>
                     <div class="align-items-center justify-content-between mx-auto ">
-                      <button class="btn btn-secondary" @click="editProduct(null)">Cancel</button>
-                      <button class="btn btn-success" @click="removeProduct(selectedProduct)">Save</button>
+                      <button class="btn btn-secondary" @click="confirmEditProduct(null)">Cancel</button>
+                      <button class="btn btn-success" @click="setProduct(editProduct)">Save</button>
                     </div>
                   </template>
           </modal>
@@ -81,13 +81,13 @@ export default {
     data(){
         
         return{   
-        productName: '',
+       
         product:{
             title:'',
             price:'',
             inventory:''
         },
-          
+           productName: '',
     }
 
     },
@@ -115,7 +115,8 @@ export default {
             incrementInventory:'products/incrementInventory',
             decrementInventory:'products/decrementInventory',
             addProduct:'products/addProductToList',
-            removeProduct:'products/removeProductFromList'
+            removeProduct:'products/removeProductFromList',
+            setProduct:'products/setProductName'
         }), 
         
          confirmDeleteProduct(product){
@@ -124,7 +125,7 @@ export default {
          },
          confirmEditProduct( product){
            this.$store.commit('products/editProduct', product)
-           productName = product.title
+           this.productName = product.title
          },
           onCancel() {
            $emit('close')
