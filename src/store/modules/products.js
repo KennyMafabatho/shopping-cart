@@ -111,12 +111,16 @@ export default {
 
 
         },
-        setProductName( {state, commit}, product){
-            const productName = state.items.findIndex((prodId) => prodId.id === item.id)
-              if (index > -1)  
-              state.editing.splice(index, 1)
-
-              commit('editProduct', {productName: productName})
+        setProductName( {state, commit,productTitle}, productName){
+           // console.log(productName)
+            //productTitle = state.editing
+            //console.log(productTitle)
+          const productIndex = state.items.findIndex((item) => item.id === state.editing.id)
+          let editingProduct = state.editing
+          commit('editProduct',
+           editingProduct.title = productName,
+           state.items.splice(productIndex, editingProduct)
+          )
           }
  
     }

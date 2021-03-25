@@ -63,7 +63,7 @@
                   <template v-slot:footer>
                     <div class="align-items-center justify-content-between mx-auto ">
                       <button class="btn btn-secondary" @click="confirmEditProduct(null)">Cancel</button>
-                      <button class="btn btn-success" @click="setProduct(editProduct)">Save</button>
+                      <button class="btn btn-success" @click="setProductName(productName)(confirmEditProduct(null))">Save</button>
                     </div>
                   </template>
           </modal>
@@ -116,7 +116,7 @@ export default {
             decrementInventory:'products/decrementInventory',
             addProduct:'products/addProductToList',
             removeProduct:'products/removeProductFromList',
-            setProduct:'products/setProductName'
+            setProductName:'products/setProductName'
         }), 
         
          confirmDeleteProduct(product){
