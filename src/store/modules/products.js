@@ -63,6 +63,8 @@ export default {
             state.deleting = product
         },
 
+        
+
         editProduct(state, product){
             state.editing = product
         }
@@ -111,14 +113,11 @@ export default {
 
 
         },
-        setProductName( {state, commit,productTitle}, productName){
-           // console.log(productName)
-            //productTitle = state.editing
-            //console.log(productTitle)
+        setProductName( {state, commit}, productName){      
           const productIndex = state.items.findIndex((item) => item.id === state.editing.id)
           let editingProduct = state.editing
+          editingProduct.title = productName
           commit('editProduct',
-           editingProduct.title = productName,
            state.items.splice(productIndex, editingProduct)
           )
           }

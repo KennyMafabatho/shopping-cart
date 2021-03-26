@@ -22,7 +22,7 @@
         <h4 class="pt-4 pb-4 font-weight-bold text-uppercase">Inventory Management</h4>
         <ul class="align-items-centre">
        
-        <li v-for="product in products "> 
+        <li v-for="product in products"> 
 
         <span class="pl-2 pb-2"> <button type="button" class="btn btn-success"  @click="confirmEditProduct(product)">Edit</button></span>
        
@@ -33,39 +33,37 @@
          </li>  
         </ul>
          <modal v-if="this.deleteProduct">
-                  <template v-slot:header>
-                    <h3 >Deleting a product</h3>
-                  </template>
+            <template v-slot:header>
+              <h3 >Deleting a product</h3>
+            </template>
 
-                  <template v-slot:body> <h4> Are you sure you want to delete {{ deleteProduct.title }} ? </h4>
-                </template>
+            <template v-slot:body> <h4> Are you sure you want to delete {{ deleteProduct.title }} ? </h4>
+          </template>
 
-                  <template v-slot:footer>
-                    <div class="align-items-center justify-content-between mx-auto ">
-                      <button class="btn btn-secondary" @click="confirmDeleteProduct(null)">Cancel</button>
-                      <button class="btn btn-danger" @click="removeProduct(deleteProduct)">Delete</button>
-                    </div>
-                  </template>
+            <template v-slot:footer>
+              <div class="align-items-center justify-content-between mx-auto ">
+                <button class="btn btn-secondary" @click="confirmDeleteProduct(null)">Cancel</button>
+                <button class="btn btn-danger" @click="removeProduct(deleteProduct)(confirmDeleteProduct(null))">Delete</button>
+              </div>
+            </template>
           </modal>
 
-
           <modal v-if="this.editProduct">
-                  <template v-slot:header>
-                    <h3>Editing Product</h3>
-                  </template>
+            <template v-slot:header>
+              <h3>Editing Product</h3>
+            </template>
 
-                  <template v-slot:body> <label class="form"> 
-                    <p> Edit {{ editProduct.title }} </p>
-                  <input v-model="productName" placeholder="Edit"> </label>
-                        
-                </template>
+            <template v-slot:body> <label class="form"> 
+              <p> Edit  {{ editProduct.title }} </p>
+            <input v-model="productName" placeholder="Edit"> </label>        
+          </template>
 
-                  <template v-slot:footer>
-                    <div class="align-items-center justify-content-between mx-auto ">
-                      <button class="btn btn-secondary" @click="confirmEditProduct(null)">Cancel</button>
-                      <button class="btn btn-success" @click="setProductName(productName)(confirmEditProduct(null))">Save</button>
-                    </div>
-                  </template>
+            <template v-slot:footer>
+              <div class="align-items-center justify-content-between mx-auto ">
+                <button class="btn btn-secondary" @click="confirmEditProduct(null)">Cancel</button>
+                <button class="btn btn-success" @click="renameProduct(productName)">Save</button>
+              </div>
+            </template>
           </modal>
         </footer>
     </div>
@@ -116,16 +114,23 @@ export default {
             decrementInventory:'products/decrementInventory',
             addProduct:'products/addProductToList',
             removeProduct:'products/removeProductFromList',
-            setProductName:'products/setProductName'
+            setProductTitle:'products/setProductName'
         }), 
         
          confirmDeleteProduct(product){
            this.$store.commit('products/deleteProduct',product)
-          // this.openModal= true
+          
          },
          confirmEditProduct( product){
            this.$store.commit('products/editProduct', product)
-           this.productName = product.title
+           if (product) {
+             this.productName = product.title
+             }
+           
+         },
+         renameProduct(){
+           this.setProductTitle(this.productName),
+           this.confirmEditProduct(null)
          },
           onCancel() {
            $emit('close')
