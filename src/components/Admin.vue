@@ -2,27 +2,32 @@
 
     <div>
         <section class="pb-4 ">
-            <h2 class="pt-4 pb-2 font-weight-bold"> Add new Product </h2>
-            <div class="form">
-            <label for= "title">Title</label>
-                <input type="text"  v-model="product.title" required>
-            
-                <label for= "price">Price</label>
-                <input type="currency" v-model="product.price" required>
-                
-            <label for= "inventory">Inventory</label>
-                <input type="number" v-model="product.inventory" required>
-                <br>
-            <pre class="pt-2"> <button type="button" @click="addProduct(product)" class ="btn btn-success">Add product</button> </pre>
-
-            </div>
+            <h2 class="pt-4 pb-2 font-weight-bold">Add new Product </h2>
+            <form method="post">
+                <p v-if="errors.length">
+                  
+                  <ul>
+                    <li v-for="(error,index) in errors" :key="index"> {{ error }} </li>
+                  </ul>
+                </p>
+              <label for= "title">Title</label>
+                  <input type="text" v-model="product.title" required>
+              
+                  <label for= "price">Price</label>
+                  <input type="currency" v-model="product.price" required>
+                  
+              <label for= "inventory">Inventory</label>
+                  <input type="number" v-model="product.inventory" required>
+                  <br>
+              <pre class="pt-2"> <button type="button" @click="errorCheck(product)" class ="btn btn-success">Add product</button> </pre>
+            </form>
         </section>
 
        <footer class="">
         <h4 class="pt-4 pb-4 font-weight-bold text-uppercase">Inventory Management</h4>
         <ul class="align-items-centre">
        
-        <li v-for="product in products"> 
+        <li v-for="product in products" :key="product.id"> 
 
         <span class="pl-2 pb-2"> <button type="button" class="btn btn-success"  @click="confirmEditProduct(product)">Edit</button></span>
        
@@ -77,15 +82,17 @@ export default {
       Modal
     },
     data(){
-        
-        return{   
        
+        return{   
+      
         product:{
             title:'',
             price:'',
             inventory:''
         },
            productName: '',
+            errors:[]
+           
     }
 
     },
@@ -128,13 +135,28 @@ export default {
              }
            
          },
+         errorCheck(product){
+           
+          this.errors= []
+          if (!product.title) {
+            this.errors.push("Product title is required!")
+          }
+          
+          if (!product.price) {
+            this.errors.push("Price is required!");
+          }
+          
+          if (!product.inventory) {
+            this.errors.push("Inventory is required!");
+          }
+          else if (product.title && product.price && product.inventory) {
+            this.addProduct(product)}
+      
+         },
          renameProduct(){
            this.setProductTitle(this.productName),
            this.confirmEditProduct(null)
          },
-          onCancel() {
-           $emit('close')
-      }
          
       
     },
