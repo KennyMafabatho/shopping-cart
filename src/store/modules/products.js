@@ -49,7 +49,7 @@ export default {
     addNewProduct(state, product, errors) {
       state.items.push(product);
     },
-    removeProduct(state, item, id) {
+    deletingProduct(state, item, id) {
       const index = state.items.findIndex(prodId => prodId.id === item.id);
       if (index > -1) state.items.splice(index, 1);
     },
@@ -115,7 +115,7 @@ export default {
     },
 
     removeProductFromList({ commit }, item) {
-      commit("removeProduct", item);
+      commit("deletingProduct", item);
     },
     setProductName({ state, commit }, productName) {
       const productIndex = state.items.findIndex(

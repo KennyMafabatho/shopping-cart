@@ -48,7 +48,7 @@
             <template v-slot:footer>
               <div class="align-items-center justify-content-between mx-auto ">
                 <button class="btn btn-secondary" @click="confirmDeleteProduct(null)">Cancel</button>
-                <button class="btn btn-danger" @click="removeProduct(deleteProduct)(confirmDeleteProduct(null))">Delete</button>
+                <button class="btn btn-danger" @click="deletingProduct">Delete</button>
               </div>
             </template>
           </modal>
@@ -152,6 +152,10 @@ export default {
           else if (product.title && product.price && product.inventory) {
             this.addProduct(product)}
       
+         },
+         deletingProduct(){
+           this.removeProduct(this.deleteProduct)
+           this.confirmDeleteProduct(null)
          },
          renameProduct(){
            this.setProductTitle(this.productName),
