@@ -5,9 +5,8 @@
             <h2 class="pt-4 pb-2 font-weight-bold">Add new Product </h2>
             <form method="post">
                 <p v-if="errors.length">
-                  
                   <ul>
-                    <li v-for="(error,index) in errors" :key="index"> {{ error }} </li>
+                   <li v-for="(error,index) in errors" :key="index"> {{ error }} </li>
                   </ul>
                 </p>
               <label for= "title">Title</label>
