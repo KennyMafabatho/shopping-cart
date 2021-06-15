@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="pt-4">
         <section class="pb-4 ">
             <h2 class="pt-4 pb-2 font-weight-bold">Add new Product </h2>
             <form method="post">

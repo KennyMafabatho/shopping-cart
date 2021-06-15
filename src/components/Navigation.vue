@@ -1,20 +1,27 @@
 <template>
-    <div>
-    <b-navbar type="dark" variant="info" >
-        <b-navbar-brand>  
-            <router-link class="text-dark" to="/"> Products</router-link>
-          
-            <router-link class="ml-1 text-dark" to="/cart"> Cart </router-link>
-          
-              <router-link class="text-align-center text-dark" to="/cart"> Total Items: {{ total }}</router-link>
-              
-        </b-navbar-brand>
-        <b-navbar-brand class="ml-auto">
-          <router-link class="text-dark" to="/admin">Admin</router-link>
-        </b-navbar-brand>
-        
-        </b-navbar>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light mb-4">
+    <router-link class="navbar-brand" to="/" >Home</router-link>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item nav-link">
+          <router-link class="text-dark" to="/products"> Products</router-link>
+        </li>
+        <li class="nav-item nav-link">
+          <router-link class="ml-1 text-dark" to="/cart"> Cart </router-link>
+        </li>
+        <li class="nav-item nav-link">
+          <router-link class="text-align-center text-dark" to="/cart"> Total Items: {{ total }}</router-link>
+         </li>
+      </ul>
     </div>
+    <li class="nav-item nav-link my-2 my-lg-0">
+          <router-link class="ml-1 text-dark" to="/admin"> Admin</router-link>
+        </li>
+  </nav>
 </template>
 
 <script>

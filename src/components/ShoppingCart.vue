@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-4">
         <h1 class="pt-4 pb-2 font-weight-bold">Shopping Cart</h1>
         <ul>
             <li v-for="product in products">

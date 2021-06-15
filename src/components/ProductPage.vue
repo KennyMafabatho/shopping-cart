@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-4">
       <p v-if="product"> {{ product.id }} - {{ product.title }} </p>
     </div>
 </template>
@@ -25,3 +25,11 @@ export default {
 }
 
 </script>
+
+<style scoped>
+div{
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+</style>

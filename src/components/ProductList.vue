@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-4">
         <h1 class="pt-4 pb-2 font-weight-bold">Product List</h1>
         <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
         <ul v-else>
