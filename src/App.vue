@@ -11,6 +11,7 @@ import ProductList from './components/ProductList'
 import ShoppingCart from './components/ShoppingCart'
 import Admin from './components/Admin'
 import Modal from './components/Modal'
+import HomePage from './components/HomePage.vue';
 
 export default {
   name: 'App',
@@ -18,6 +19,7 @@ export default {
     ProductList,
     ShoppingCart,
     Navigation,
+    HomePage,
     Admin,
     Modal
   }
@@ -32,5 +34,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 20px;
+  
 }
 </style>

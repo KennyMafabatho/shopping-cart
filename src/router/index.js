@@ -5,6 +5,7 @@ import ProductList from '../components/ProductList'
 import ShoppingCart from '../components/ShoppingCart'
 import ProductPage from '../components/ProductPage'
 import Admin from '../components/Admin'
+import HomePage from '../components/HomePage';
 import Modal from '../components/Modal'
 
 Vue.use(Router)
@@ -14,6 +15,11 @@ const router = new Router({
     routes: [
         {
             path: '/',
+            name:'home',
+            component: HomePage
+        },
+        {
+            path: '/products',
             name: 'products',
             props : true,
             component: ProductList,
