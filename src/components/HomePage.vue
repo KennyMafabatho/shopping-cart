@@ -1,37 +1,38 @@
 <template>
   <div class="home pt-4">
       <div class="container mt-4" >
-        <div class="d-flex mt-4 mb-4">
-          <div class="col-lg-3 col-md-3 col-sm-6 item">
+        <div class="row mt-4 mb-4">
+          <div class="col-lg-3 col-md-3 col-6 item">
             <router-link to="/products" class="pr-2">
-              <div class="mb-2">
+              <p class="mb-2">
                 Designer T-shirts 
-               </div>
+               </p>
                <span><img src="@/assets/H&M t-shirt.jpg"/></span>
             </router-link> 
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 item">
+          <div class="col-lg-3 col-md-3 col-6 item">
             <router-link to="/products" class="pr-2">
-              <div class="mb-2">Watches
-              </div> 
+              <p class="mb-2">Watches
+              </p> 
               <span> <img src="@/assets/watches.jpg"/> </span>
             </router-link> 
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 item">
-            <router-link to="/products" class="pr-2"> <div class="mb-2">Shoes</div>
+          <div class="col-lg-3 col-md-3 col-6 item">
+            <router-link to="/products" class="pr-2"> 
+              <p class="mb-2">Shoes</p>
                 <span> <img src="@/assets/shoes.jpg"/> </span>
             </router-link> 
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 item">
-            <router-link to="/products" class="pr-2"> <div class="mb-2">Ipads </div>
+          <div class="col-lg-3 col-md-3 col-6 item">
+            <router-link to="/products" class="pr-2"> 
+                <p class="mb-2"> Ipads </p>
                 <span> <img src="@/assets/Ipad4.jpg"/> </span>
             </router-link> 
           </div>
-         
         </div>
-      </div>
-      <div class="text-center">
-      <button class="btn btn-outline-secondary " @click="products">And more</button>
+        <div class="text-center pt-4">
+          <a href="/products" class="btn btn-secondary">And more </a>
+        </div>
       </div>
   </div>
 </template>
@@ -42,14 +43,17 @@
 export default {
  
   computed:{
-    products(){
-      return +'/products';
+    productLink(){
+      return  this.$route.path +'/products';
     }
   }
   }
 </script>
 
 <style scoped>
+.p{
+  color: black;
+}
 .container{
   padding-top: 4rem;
 }
@@ -79,7 +83,7 @@ h2,h4,h5{
     height: 150px;
   }
   a{
-    color:lightseagreen;
+    color: black;
     text-decoration: none;
     
   }
@@ -89,7 +93,7 @@ h2,h4,h5{
   }
 
  .item{
-  color: #fff;
+  color: black;
   text-align: center;
   border-bottom-left-radius: 93%;
   position: relative;

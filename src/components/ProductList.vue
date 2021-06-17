@@ -13,7 +13,7 @@
                   <span> {{ product.title }} - {{ product.price | currency }} - {{ product.inventory}} </span>
                </router-link>
                 <span>
-                    <button type="button" class="btn btn-success" :disabled ="!productIsInStock (product)"
+                    <button type="button" class="btn btn-secondary" :disabled ="!productIsInStock (product)"
                     @click="addProductToCart(product)">Add To Cart</button>
                     
                     <div v-if="product.inventory < 5 ">
