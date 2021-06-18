@@ -2,7 +2,7 @@
 
       <div class="container mt-4" >
         <div class="row mt-4 mb-4">
-          <div class="col-md-3 col item">
+          <div class="col-md-3 col-6 item">
                 <p class="mb-2"> Designer T-shirts </p>
             <router-link to="/products" class="pr-2">
                <span><img src="@/assets/H&M t-shirt.jpg"/></span>

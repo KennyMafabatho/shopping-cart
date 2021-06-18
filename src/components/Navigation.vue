@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light mb-4">
-    <router-link class="navbar-brand" to="/" >Home</router-link>
+    <router-link class="navbar-brand" to="/" >
+        <img src="@/assets/cart.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Home
+    </router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
