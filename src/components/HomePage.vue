@@ -1,38 +1,40 @@
 <template>
-
-      <div class="container mt-4" >
-        <div class="row mt-4 mb-4">
-          <div class="col-md-3 col-6 item">
-                <p class="mb-2"> Designer T-shirts </p>
-            <router-link to="/products" class="pr-2">
-               <span><img src="@/assets/H&M t-shirt.jpg"/></span>
-            </router-link> 
-          </div>
-          <div class="col-md-3 col-6 item">
-            <p class="mb-2">Watches</p> 
-            <router-link to="/products" class="pr-2">
-              <span> <img src="@/assets/watches.jpg"/> </span>
-            </router-link> 
-          </div>
-          <div class="col-md-3 col-6 item">
-            <p class="mb-2">Shoes</p>
-            <router-link to="/products" class="pr-2"> 
-              
-                <span> <img src="@/assets/shoes.jpg"/> </span>
-            </router-link> 
-          </div>
-          <div class="col-md-3 col-6 item">
-            <p class="mb-2"> Ipads </p>
-            <router-link to="/products" class="pr-2"> 
-                
-                <span> <img src="@/assets/Ipad4.jpg"/> </span>
-            </router-link> 
-          </div>
-        </div>
-        <div class="text-center pt-4">
-          <a href="/products" class="btn btn-dark active">And more </a>
-        </div>
+  <div class="container mt-4" >
+    <div class="row mt-4 mb-4">
+      <div class="col-md-3 col-6 item">
+            <p class="mb-2"> Designer T-shirts </p>
+        <router-link to="/products" class="pr-2">
+            <span><img src="@/assets/H&M t-shirt.jpg"/></span>
+        </router-link> 
       </div>
+      <div class="col-md-3 col-6 item">
+        <p class="mb-2">Watches</p> 
+        <router-link to="/products" class="pr-2">
+          <span> <img src="@/assets/watches.jpg"/> </span>
+        </router-link> 
+      </div>
+      <div class="col-md-3 col-6 item">
+        <p class="mb-2">Shoes</p>
+        <router-link to="/products" class="pr-2"> 
+          
+            <span> <img src="@/assets/shoes.jpg"/> </span>
+        </router-link> 
+      </div>
+      <div class="col-md-3 col-6 item">
+        <p class="mb-2"> Ipads </p>
+        <router-link to="/products" class="pr-2"> 
+            
+            <span> <img src="@/assets/Ipad4.jpg"/> </span>
+        </router-link> 
+      </div>
+    </div>
+    <div class="text-center pt-4">
+      <a class="btn btn-dark active" href="/products" role="button">And more </a>
+    </div>
+    <footer>
+      
+    </footer>
+  </div>
 </template>
 
 

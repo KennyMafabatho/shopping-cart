@@ -9,15 +9,15 @@
           </ul>
         </p>
         <div class="form-group">
-        <label class="col-sm-1 col-form-label" for= "title">Title</label>
+            <label class="col-sm-1 col-form-label" for= "title">Title</label>
             <input type="text" v-model="product.title" required>
         </div>
         <div class="form-group">
-        <label class="col-sm-1 col-form-label"  for= "price">Price</label>
+            <label class="col-sm-1 col-form-label"  for= "price">Price</label>
             <input type="currency" v-model="product.price" required>
         </div>
         <div class="form-group">
-        <label class="col-sm-1 col-form-label"  for= "inventory">Inventory</label>
+            <label class="col-sm-1 col-form-label"  for= "inventory">Inventory</label>
             <input type="number" v-model="product.inventory" required>
             <br>
         </div>
@@ -39,6 +39,7 @@
           <pre class="mt-2"> <button type="button" class ="btn btn-info" @click="decrementInventory(product)" > - </button> {{ product.inventory}} <button type="button" class ="btn btn-info" @click="incrementInventory(product)"> + </button> </pre>             
         </li>  
       </ul>
+      <!--modal for delete product -->
       <modal v-if="this.deleteProduct">
         <template v-slot:header>
           <h3 >Deleting a product</h3>
@@ -54,7 +55,7 @@
           </div>
         </template>
       </modal>
-
+      <!--modal for edit product* -->
       <modal v-if="this.editProduct">
         <template v-slot:header>
           <h3>Editing Product</h3>
@@ -94,20 +95,17 @@ export default {
    }
   },
   computed:{
-
-      ...mapState({
-          products: state => state.products.items,
-          deleteProduct : state => state.products.deleting,
-          editProduct: state => state.products.editing
+    ...mapState({
+      products: state => state.products.items,
+      deleteProduct : state => state.products.deleting,
+      editProduct: state => state.products.editing
   }),
-
     ...mapGetters('products', {
         productIsInStock: 'productIsInStock'
     })
    
   },
   methods:{
-
     ...mapActions({
         fetchProducts :'products/fetchProducts',
         incrementInventory:'products/incrementInventory',
