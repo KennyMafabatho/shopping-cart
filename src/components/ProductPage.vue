@@ -1,26 +1,26 @@
 <template>
-    <div class="pt-4">
-      <p v-if="product"> {{ product.id }} - {{ product.title }} </p>
-    </div>
+  <div class="pt-4">
+    <p v-if="product"> {{ product.id }} - {{ product.title }} </p>
+  </div>
 </template>
 
 <script>
 export default {
-    data () {
-        return {};
-    },
-    props:
-    {
-        id:{
-            type: Number,
-            required: true
-        }
-    },
-    computed:{
-        product: function () {
-             return this.$store.getters['products/getProductById'](this.id);
-        }
-    },
+  data () {
+     return {};
+  },
+  props:
+  {
+    id:{
+      type: Number,
+      required: true
+    }
+  },
+  computed:{
+    product: function () {
+      return this.$store.getters['products/getProductById'](this.id);
+    }
+  },
        
 }
 
