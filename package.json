@@ -10,8 +10,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
+    "feather-icons": "^4.28.0",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "vue": "^2.6.12",
