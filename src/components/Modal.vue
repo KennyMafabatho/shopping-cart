@@ -1,5 +1,6 @@
 <template>
   <transition name="fade">
+  
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -16,9 +17,9 @@
             <button class="modal-default-button" @click="$emit('close')"> Cancel </button>
             </slot>
           </div>
+          </div>
         </div>
-      </div>
-    </div>
+  </div>
   </transition>
 </template>
 <script>
@@ -77,7 +78,7 @@ export default {
 .modal-container {
     
     position: relative;
-    width: 600px;
+    max-width: 50%;
     background-color: #ffffff;
     border-radius: 5px;
     margin: 50px auto;

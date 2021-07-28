@@ -1,6 +1,6 @@
 <template>
-  <div class=" container pt-4">
-    <h1 class="pt-4 pb-2 font-weight-bold">Product List</h1>
+  <div class="container pt-4">
+    <h1 class="pt-4 pb-2 font-weight-bold"></h1>
     <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
     <div class="row" v-else>
         <div class = "col-md-3 col-6 pb-4" v-for="product in products ">   
@@ -8,18 +8,20 @@
               name: 'productname', 
               params: { id: product.id}}"> 
               <img :src="require(`@/assets/${product.image}`)" :alt="product.name"/> <br>
-              {{ product.title }} - <br>
-              {{ product.price | currency }} - {{ product.inventory}}
+              {{ product.title }} <br>
+              {{ product.price | currency }}
           </router-link>
           <br>
             <span>
-              <div class="alert alert-danger" v-if="product.inventory < 5 ">
-                  <p>last items in stock</p>
+              <div class="pb-2" v-if="product.inventory < 5 ">
+                  <span class="badge badge-success">Last items in stock</span>
               </div>
-              <button type="button" class="btn btn-secondary" :disabled ="!productIsInStock (product)"
+              <button type="button" class="btn btn-outline-secondary btn-sm" :disabled ="!productIsInStock (product)"
               @click="addProductToCart(product)">Add To Cart</button>
+              
             </span>
-          </div>
+           
+        </div>
     </div>
   </div>
 </template>
@@ -74,4 +76,7 @@ export default {
     display: flex;
     justify-content: space-between;
     }
+    .alert {
+   display:inline-block   
+}
 </style>
