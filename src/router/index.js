@@ -7,6 +7,9 @@ import ProductPage from '../components/ProductPage'
 import Admin from '../components/Admin'
 import HomePage from '../components/HomePage';
 import Modal from '../components/Modal'
+import Watches from '../components/Watches';
+import Shoes from '../components/Shoes';
+import Electronics from '../components/Electronics';
 
 Vue.use(Router)
 
@@ -44,6 +47,21 @@ const router = new Router({
             path: '/admin',
             name: 'admin',
             component: Admin
+        },
+        {
+          path: '/watches',
+          name: 'watches',
+          component: Watches
+        },
+        {
+          path: '/shoes',
+          name: 'shoes',
+          component: Shoes
+        },
+        {
+          path: '/electronics',
+          name: 'electronics',
+          component: Electronics
         }
     ],
     
