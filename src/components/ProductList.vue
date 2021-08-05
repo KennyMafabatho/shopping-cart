@@ -3,7 +3,8 @@
     <h1 class="pt-4 pb-2 font-weight-bold"></h1>
     <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
     <div class="row" v-else>
-        <div class = "col-md-3 col-6 pb-4" v-for="product in products ">   
+        <div class = "col-md-3 col-6 pb-4" v-for="product in products">
+          <div v-if="product.Category_id === 103"> 
           <router-link :to="{ 
               name: 'productname', 
               params: { id: product.id}}"> 
@@ -17,10 +18,9 @@
                   <span class="badge badge-success">Last items in stock</span>
               </div>
               <button type="button" class="btn btn-outline-secondary btn-sm" :disabled ="!productIsInStock (product)"
-              @click="addProductToCart(product)">Add To Cart</button>
-              
-            </span>
-           
+              @click="addProductToCart(product)">Add To Cart</button> 
+            </span>  
+          </div>
         </div>
     </div>
   </div>
