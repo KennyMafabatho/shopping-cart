@@ -21,6 +21,11 @@
             <input type="number" v-model="product.inventory" required>
             <br>
         </div>
+        <div class="form-group">
+            <label class="col-sm-1 col-form-label"  for= "inventory">Inventory</label>
+            <input type="number" v-model="product.Category_id" required>
+            <br>
+        </div>
         <pre class="pt-2"> <button type="button" @click="errorCheck(product)" class ="btn btn-primary">Add product</button> </pre>
       </form>
     </section>
@@ -78,111 +83,123 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-import Modal from "./Modal";
+import {mapState, mapGetters, mapActions} from 'vuex'
+import Modal from './Modal'
 export default {
-    components: {
-        Modal,
+  components:{
+    Modal
+  },
+  data(){    
+    return{   
+    product:{
+      title:'',
+      price:'',
+      inventory:''
     },
-    data() {
-        return {
-            product: {
-                title: "",
-                price: "",
-                inventory: "",
-            },
-            productName: "",
-            errors: [],
-        };
+      productName: '',
+      errors:[]         
+   }
+  },
+  computed:{
+    ...mapState({
+      products: state => state.products.items,
+      deleteProduct : state => state.products.deleting,
+      editProduct: state => state.products.editing
+  }),
+    ...mapGetters('products', {
+        productIsInStock: 'productIsInStock'
+    })
+   
+  },
+  methods:{
+    ...mapActions({
+        fetchProducts :'products/fetchProducts',
+        incrementInventory:'products/incrementInventory',
+        decrementInventory:'products/decrementInventory',
+        addProduct:'products/addProductToList',
+        removeProduct:'products/removeProductFromList',
+        setProductTitle:'products/setProductName'
+    }), 
+      
+    confirmDeleteProduct(product){
+      this.$store.commit('products/deleteProduct',product)
+    
     },
-    computed: {
-        ...mapState({
-            products: (state) => state.products.items,
-            deleteProduct: (state) => state.products.deleting,
-            editProduct: (state) => state.products.editing,
-        }),
-        ...mapGetters("products", {
-            productIsInStock: "productIsInStock",
-        }),
+    confirmEditProduct( product){
+      this.$store.commit('products/editProduct', product)
+      if (product) {
+        this.productName = product.title
+        }
+      
     },
-    methods: {
-        ...mapActions({
-            fetchProducts: "products/fetchProducts",
-            incrementInventory: "products/incrementInventory",
-            decrementInventory: "products/decrementInventory",
-            addProduct: "products/addProductToList",
-            removeProduct: "products/removeProductFromList",
-            setProductTitle: "products/setProductName",
-        }),
+    errorCheck(product){
+      
+    this.errors= []
+    if (!product.title) {
+      this.errors.push("Product title is required!")
+    }
+    
+    if (!product.price) {
+      this.errors.push("Price is required!");
+    }
+    
+    if (!product.inventory) {
+      this.errors.push("Inventory is required!");
+    },
+     if (!product.category_id) {
+      this.errors.push("Category Id is required!");
+    }
+    else if (product.title && product.price && product.inventory) {
+      this.addProduct(product)}
 
-        confirmDeleteProduct(product) {
-            this.$store.commit("products/deleteProduct", product);
-        },
-        confirmEditProduct(product) {
-            this.$store.commit("products/editProduct", product);
-            if (product) {
-                this.productName = product.title;
-            }
-        },
-        errorCheck(product) {
-            this.errors = [];
-            if (!product.title) {
-                this.errors.push("Product title is required!");
-            }
-
-            if (!product.price) {
-                this.errors.push("Price is required!");
-            }
-
-            if (!product.inventory) {
-                this.errors.push("Inventory is required!");
-            } else if (product.title && product.price && product.inventory) {
-                this.addProduct(product);
-            }
-        },
-        deletingProduct() {
-            this.removeProduct(this.deleteProduct);
-            this.confirmDeleteProduct(null);
-        },
-        renameProduct() {
-            this.setProductTitle(this.productName),
-                this.confirmEditProduct(null);
-        },
     },
-    created() {
-        this.loading = true;
-        this.fetchProducts().then(() => (this.loading = false));
+    deletingProduct(){
+      this.removeProduct(this.deleteProduct)
+      this.confirmDeleteProduct(null)
     },
-};
+    renameProduct(){
+      this.setProductTitle(this.productName),
+      this.confirmEditProduct(null)
+    },
+        
+  },
+  created(){
+      this.loading = true
+      this.fetchProducts()
+      .then(()=> this.loading = false )
+  },
+    
+}
 </script>
 
 <style scoped>
 .overflow-hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 .btn {
-    padding: 8px 16px;
-    border-radius: 5px;
-}
+  padding: 8px 16px;
+  border-radius: 5px;
+  }
 
 overflow-hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 .mx-auto {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .d-flex {
-    display: flex;
+  display: flex;
 }
 .align-items-center {
-    align-items: center;
+  align-items: center;
 }
 .justify-content-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 .actions .cancel {
-    background: darkred;
-    color: white;
-}
+     background: darkred;
+     color: white;
+    }
+
 </style>
