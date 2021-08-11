@@ -1,6 +1,6 @@
 <template>
   <div class="pt-4">
-    <section class="pb-4 ">
+    <section class="pb-4 pt-4">
       <h2 class="pt-4 pb-2 font-weight-bold">Add new Product </h2>
       <form method="post" >
         <p v-if="errors.length">
@@ -10,20 +10,19 @@
         </p>
         <div class="form-group">
             <label class="col-sm-1 col-form-label" for= "title">Title</label>
-            <input type="text" v-model="product.title" required>
+            <input type="text" placeholder="Enter Title" v-model="product.title" required>
         </div>
         <div class="form-group">
             <label class="col-sm-1 col-form-label"  for= "price">Price</label>
-            <input type="currency" v-model="product.price" required>
+            <input type="currency" placeholder="Enter Price" v-model="product.price" required>
         </div>
         <div class="form-group">
             <label class="col-sm-1 col-form-label"  for= "inventory">Inventory</label>
-            <input type="number" v-model="product.inventory" required>
-            <br>
+            <input type="number" placeholder="Enter Inventory Number" v-model="product.inventory" required>
         </div>
         <div class="form-group">
-            <label class="col-sm-1 col-form-label"  for= "inventory">Inventory</label>
-            <input type="number" v-model="product.Category_id" required>
+            <label class="col-sm-1 col-form-label"  for= "category">Category</label>
+            <input type="number" placeholder="Enter Category Id" v-model="product.Category_id" required>
             <br>
         </div>
         <pre class="pt-2"> <button type="button" @click="errorCheck(product)" class ="btn btn-primary">Add product</button> </pre>
@@ -145,7 +144,7 @@ export default {
     
     if (!product.inventory) {
       this.errors.push("Inventory is required!");
-    },
+    }
      if (!product.category_id) {
       this.errors.push("Category Id is required!");
     }

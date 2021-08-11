@@ -4,7 +4,7 @@
     <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
     <div class="row" v-else>
         <div class = "col-md-3 col-6 pb-4" v-for="product in products">
-          <div v-if="product.Category_id === 101"> 
+          <div v-if="product.category_id === 101"> 
           <router-link :to="{ 
               name: 'productname', 
               params: { id: product.id}}"> 
@@ -23,6 +23,25 @@
           </div>
         </div>
     </div>
+      
+    <br>
+    <div class="pt-4">
+
+    </div>
+    <br>
+     <div class="pt-4">
+       
+    </div>
+    <br>
+     <div class="pt-4">
+       
+    </div>
+    <hr>
+    <br>
+     <div class="pt-4">
+       <p>Go to shopping <a href="/">home page </a> </p>
+    </div>
+    <br>
   </div>
 </template>
 
