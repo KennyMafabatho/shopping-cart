@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label class="col-sm-1 col-form-label"  for= "category">Category</label>
-            <input type="number" placeholder="Enter Category Id" v-model="product.Category_id" required>
+            <input type="number" placeholder="Enter Category Id" v-model="product.category_id" required>
             <br>
         </div>
         <pre class="pt-2"> <button type="button" @click="errorCheck(product)" class ="btn btn-primary">Add product</button> </pre>
@@ -41,7 +41,7 @@
             <button type="button" class="btn btn-danger btn-sm"  @click="confirmDeleteProduct(product)">Delete</button> 
           </span>
           <pre class="mt-2"> <button type="button" class ="btn btn-info btn-sm " @click="decrementInventory(product)" > - </button><button type="button" class="btn btn-primary btn-sm ml-2 "><span class="badge badge-light">{{ product.inventory}}</span>
-</button> <button type="button" class ="btn btn-info  btn-sm" @click="incrementInventory(product)"> + </button> </pre>             
+          </button> <button type="button" class ="btn btn-info  btn-sm" @click="incrementInventory(product)"> + </button> </pre>             
         </li>  
       </ul>
       <!--modal for delete product -->
@@ -93,7 +93,8 @@ export default {
     product:{
       title:'',
       price:'',
-      inventory:''
+      inventory:'',
+      category_id:''
     },
       productName: '',
       errors:[]         
