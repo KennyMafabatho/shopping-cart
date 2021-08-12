@@ -109,7 +109,8 @@ export default {
           id: maxId,
           title: product.title,
           price: product.price,
-          inventory: product.inventory
+          inventory: product.inventory,
+          category_id: product.category_id
         });
    
     },

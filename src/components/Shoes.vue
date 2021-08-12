@@ -3,7 +3,7 @@
     <h1 class="pt-4 pb-2 font-weight-bold"></h1>
     <img  v-if="loading" src="https://imgur.com/JfPpwOA.gif"/>
     <div class="row" v-else>
-        <div class = "col-md-3 col-6 pb-4" v-for="product in products">
+        <div class = "col-md-3 col-6 pb-4" v-for="(product, index) in products"  :key="index">
           <div v-if="product.category_id === 103"> 
           <router-link :to="{ 
               name: 'productname', 

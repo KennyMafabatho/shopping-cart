@@ -8,8 +8,8 @@ const _products = [
     {"id": 4, "category_id": 102, "title": "BoboBird Watch", "price": 95.99, "inventory": 5, "image": "BoboBird Watch.jpg"},
     {"id": 5, "category_id": 103, "title": "Arthur Jack Boots", "price": 155.99, "inventory": 5, "image": "Arthur Jack Boots.jpg"},
     {"id": 6, "category_id": 103, "title": "Paolo Scafore Shoes", "price": 140.99, "inventory": 5, "image": "paoloscafore-shoes.jpg"},
-    {"id": 5, "category_id": 103, "title": "Napoli Cashmere-Nappa Shoes", "price": 180.99, "inventory": 5, "image": "napolo-cashmere-nappa-shoes.jpg"},
-    {"id": 5, "category_id": 103, "title": "The Brera-Cervo Shoes", "price": 210.99, "inventory": 5, "image": "the-brera-cervo-shoes.jpg"}
+    {"id": 7, "category_id": 103, "title": "Napoli Cashmere-Nappa Shoes", "price": 180.99, "inventory": 5, "image": "napolo-cashmere-nappa-shoes.jpg"},
+    {"id": 8, "category_id": 103, "title": "The Brera-Cervo Shoes", "price": 210.99, "inventory": 5, "image": "the-brera-cervo-shoes.jpg"}
   ]
   
   export default {

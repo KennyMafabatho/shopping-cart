@@ -2,7 +2,7 @@
   <div class="pt-4">
     <h1 class="pt-4 pb-2 font-weight-bold">Cart</h1>
     <ul>
-      <li v-for="product in products">
+      <li v-for="(product in products">
           {{ product.title }} - {{ product.price | currency }} - {{ product.quantity }}  
       </li>
     </ul>
